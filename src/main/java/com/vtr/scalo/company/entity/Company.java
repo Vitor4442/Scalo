@@ -12,7 +12,7 @@ import java.util.UUID;
 @Table(name = "companies")
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED) // Exigido pelo JPA
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Company {
@@ -47,6 +47,7 @@ public class Company {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
+    //todo referenciar a tabela user aqui
     @Column(name = "owner_id", nullable = false)
     private UUID ownerId;
 
