@@ -2,7 +2,9 @@ package com.vtr.scalo.company.controller;
 
 import com.vtr.scalo.company.dto.CompanyRequestDTO;
 import com.vtr.scalo.company.dto.CompanyResponseDTO;
+import com.vtr.scalo.company.dto.CompanyUserResponseDTO;
 import com.vtr.scalo.company.service.CompanyService;
+import com.vtr.scalo.users.dto.UserRequestDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -22,8 +24,8 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @PostMapping
-    public ResponseEntity<CompanyResponseDTO> create(@RequestBody @Valid CompanyRequestDTO dto) {
-        CompanyResponseDTO response = companyService.create(dto);
+    public ResponseEntity<CompanyUserResponseDTO> create(@RequestBody @Valid CompanyRequestDTO companyDTO, @Valid UserRequestDto userDTO) {
+        CompanyUserResponseDTO response = companyService.create(companyDTO, userDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
