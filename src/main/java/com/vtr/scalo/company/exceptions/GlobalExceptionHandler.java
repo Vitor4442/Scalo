@@ -20,7 +20,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler (CompanyNotFoundException.class)
+    @ExceptionHandler (CompanyDuplicate.class)
     public ResponseEntity<ErrorResponse> handleBookNotFoundException (CompanyDuplicate ex){
         ErrorResponse errorResponse = new ErrorResponse(
                 LocalDateTime.now(),

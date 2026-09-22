@@ -7,7 +7,7 @@ import lombok.Builder;
 import java.util.UUID;
 
 @Builder
-public record CompanyRequestDTO(
+        public record CompanyRequestDTO(
         @NotBlank(message = "A razão social é obrigatória")
         @Size(max = 255, message = "A razão social deve ter no máximo 255 caracteres")
         String razaoSocial,

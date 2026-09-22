@@ -2,6 +2,7 @@ package com.vtr.scalo.company.service;
 
 import com.vtr.scalo.company.dto.CompanyRequestDTO;
 import com.vtr.scalo.company.dto.CompanyResponseDTO;
+import com.vtr.scalo.company.dto.CompanyUserRequestDTO;
 import com.vtr.scalo.company.dto.CompanyUserResponseDTO;
 import com.vtr.scalo.company.entity.Company;
 import com.vtr.scalo.company.exceptions.CompanyDuplicate;
@@ -31,21 +32,21 @@ public class CompanyService {
     private final UserRepository userRepository;
 
     @Transactional
-    public CompanyUserResponseDTO create(CompanyRequestDTO companyDTO, UserRequestDto userDTO) {
-        if (companyRepository.existsByCnpj(companyDTO.cnpj())) {
+    public CompanyUserResponseDTO create(CompanyUserRequestDTO request) {
+        if (companyRepository.existsByCnpj(request.company().cnpj())) {
             throw new CompanyDuplicate("Já existe uma empresa cadastrada com o CNPJ informado.");
         }
-        if (companyRepository.existsByEmail(companyDTO.email())) {
+        if (companyRepository.existsByEmail(request.company().email())) {
             throw new CompanyDuplicate("Já existe uma empresa cadastrada com o e-mail informado.");
         }
-        if (userRepository.existsByEmail(userDTO.email())){
+        if (userRepository.existsByEmail(request.user().email())){
             throw new CompanyDuplicate("Já existe uma empresa cadastrada com o e-mail informado.");
         }
 
-        Company company = companyMapper.toEntity(companyDTO);
+        Company company = companyMapper.toEntity(request.company());
         CompanyResponseDTO savedCompany = companyMapper.toDTO(companyRepository.save(company));
 
-        User user = userMapper.toEntity(userDTO, company);
+        User user = userMapper.toEntity(request.user(), company);
         UserResponseDTO savedUser = userMapper.toDTO(userRepository.save(user));
 
         return CompanyUserResponseDTO.builder()

@@ -2,6 +2,7 @@ package com.vtr.scalo.company.controller;
 
 import com.vtr.scalo.company.dto.CompanyRequestDTO;
 import com.vtr.scalo.company.dto.CompanyResponseDTO;
+import com.vtr.scalo.company.dto.CompanyUserRequestDTO;
 import com.vtr.scalo.company.dto.CompanyUserResponseDTO;
 import com.vtr.scalo.company.service.CompanyService;
 import com.vtr.scalo.users.dto.UserRequestDto;
@@ -24,8 +25,8 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @PostMapping
-    public ResponseEntity<CompanyUserResponseDTO> create(@RequestBody @Valid CompanyRequestDTO companyDTO, @Valid UserRequestDto userDTO) {
-        CompanyUserResponseDTO response = companyService.create(companyDTO, userDTO);
+    public ResponseEntity<CompanyUserResponseDTO> create(@RequestBody @Valid CompanyUserRequestDTO request) {
+        CompanyUserResponseDTO response = companyService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
