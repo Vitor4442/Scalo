@@ -31,7 +31,7 @@ public class CompanyController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CompanyResponseDTO> findById(@PathVariable UUID id) {
+    public ResponseEntity<CompanyResponseDTO> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(companyService.findById(id));
     }
 
@@ -41,12 +41,12 @@ public class CompanyController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CompanyResponseDTO> update(@PathVariable UUID id, @RequestBody @Valid CompanyRequestDTO dto) {
+    public ResponseEntity<CompanyResponseDTO> update(@PathVariable Integer id, @RequestBody @Valid CompanyRequestDTO dto) {
         return ResponseEntity.ok(companyService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable UUID id) {
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
         companyService.delete(id);
         return ResponseEntity.noContent().build();
     }
