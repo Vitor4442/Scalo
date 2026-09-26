@@ -18,8 +18,8 @@ import java.util.UUID;
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "razao_social", nullable = false, length = 255)
     private String razaoSocial;
@@ -46,10 +46,6 @@ public class Company {
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
-
-    //todo referenciar a tabela user aqui
-    @Column(name = "owner_id", nullable = false)
-    private UUID ownerId;
 
     @PrePersist
     protected void onCreate() {
