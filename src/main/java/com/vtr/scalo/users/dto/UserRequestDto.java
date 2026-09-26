@@ -6,7 +6,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 
-import java.util.UUID;
+
+
 
 @Builder
 public record UserRequestDto(
@@ -24,6 +25,6 @@ public record UserRequestDto(
         String password,
 
         @NotNull(message = "O ID da empresa é obrigatório")
-        UUID companyId
+        Integer companyId
 ) {
 }
