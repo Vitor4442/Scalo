@@ -8,7 +8,7 @@ import java.util.UUID;
 
 @Builder
 public record CompanyResponseDTO(
-        UUID id,
+        Integer id,
         String razaoSocial,
         String nomeFantasia,
         String cnpj,
