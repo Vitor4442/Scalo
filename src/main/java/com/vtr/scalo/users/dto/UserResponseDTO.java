@@ -7,11 +7,11 @@ import java.util.UUID;
 
 @Builder
 public record UserResponseDTO(
-        UUID id,
+        Integer id,
         String name,
         String email,
         Boolean active,
-        UUID companyId,
+        Integer companyId,
         LocalDateTime createdAt,
         LocalDateTime updatedAt
 ){

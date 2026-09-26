@@ -21,7 +21,6 @@ public class CompanyMapper {
                 .email(entity.getEmail())
                 .telefone(entity.getTelefone())
                 .status(entity.getStatus())
-                .ownerId(entity.getOwnerId())
                 .createdAt(entity.getCreatedAt())
                 .updatedAt(entity.getUpdatedAt())
                 .build();
@@ -37,8 +36,7 @@ public class CompanyMapper {
                 .nomeFantasia(dto.nomeFantasia())
                 .cnpj(dto.cnpj())
                 .email(dto.email())
-                .telefone(dto.telefone())
-                .ownerId(dto.ownerId());
+                .telefone(dto.telefone());
 
         if (dto.status() != null) {
             builder.status(dto.status());
@@ -57,7 +55,6 @@ public class CompanyMapper {
         entity.setCnpj(dto.cnpj());
         entity.setEmail(dto.email());
         entity.setTelefone(dto.telefone());
-        entity.setOwnerId(dto.ownerId());
 
         if (dto.status() != null) {
             entity.setStatus(dto.status());

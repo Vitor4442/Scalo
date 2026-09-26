@@ -4,7 +4,6 @@ import com.vtr.scalo.company.entity.CompanyStatus;
 import jakarta.validation.constraints.*;
 import lombok.Builder;
 
-import java.util.UUID;
 
 @Builder
         public record CompanyRequestDTO(
@@ -28,8 +27,5 @@ import java.util.UUID;
         @Size(max = 20, message = "O telefone deve ter no máximo 20 caracteres")
         String telefone,
 
-        CompanyStatus status,
-
-        @NotNull(message = "O ID do dono é obrigatório")
-        UUID ownerId
+        CompanyStatus status
 ) {}
