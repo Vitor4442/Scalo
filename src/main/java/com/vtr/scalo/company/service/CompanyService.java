@@ -44,9 +44,9 @@ public class CompanyService {
         }
 
         Company company = companyMapper.toEntity(request.company());
-        CompanyResponseDTO savedCompany = companyMapper.toDTO(companyRepository.save(company));
-
         User user = userMapper.toEntity(request.user(), company);
+
+        CompanyResponseDTO savedCompany = companyMapper.toDTO(companyRepository.save(company));
         UserResponseDTO savedUser = userMapper.toDTO(userRepository.save(user));
 
         return CompanyUserResponseDTO.builder()
@@ -56,7 +56,7 @@ public class CompanyService {
     }
 
     @Transactional(readOnly = true)
-    public CompanyResponseDTO findById(UUID id) {
+    public CompanyResponseDTO findById(Integer id) {
         return companyRepository.findById(id)
                 .map(companyMapper::toDTO)
                 .orElseThrow(() -> new CompanyNotFoundException("Empresa não encontrada com o ID: " + id));
@@ -69,7 +69,7 @@ public class CompanyService {
     }
 
     @Transactional
-    public CompanyResponseDTO update(UUID id, CompanyRequestDTO dto) {
+    public CompanyResponseDTO update(Integer id, CompanyRequestDTO dto) {
         Company company = companyRepository.findById(id)
                 .orElseThrow(() -> new CompanyNotFoundException("Empresa não encontrada com o ID: " + id));
 
@@ -79,7 +79,7 @@ public class CompanyService {
     }
 
     @Transactional
-    public void delete(UUID id) {
+    public void delete(Integer id) {
         if (!companyRepository.existsById(id)) {
             throw new CompanyNotFoundException("Empresa não encontrada com o ID: " + id);
         }
